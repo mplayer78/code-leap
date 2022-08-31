@@ -22,8 +22,4 @@ const getIsCompleted = (id: string): boolean => {
 .challengeList {
   list-style: none;
 }
-
-.week-button__done {
-  background: #A3DA9A;
-}
 </style>

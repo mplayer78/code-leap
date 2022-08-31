@@ -24,6 +24,6 @@ const getIsCompleted = (id: string): boolean => {
 }
 
 .week-button__done {
-  background: #A3DA9A;
+  background: #7EAE7E;
 }
 </style>
