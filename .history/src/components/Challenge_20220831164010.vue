@@ -52,7 +52,6 @@ const val2 = ref(1)
     <p>{{ message }}</p>
     <form v-if="checkAnswer()" name="contact" netlify>
     <p>
-        <input type="text" name="success" value="success" hidden/>
         <button type="submit">Send</button>
     </p>
     </form>

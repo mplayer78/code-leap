@@ -50,9 +50,14 @@ const val2 = ref(1)
         <button type="submit">Go</button>
     </form>
     <p>{{ message }}</p>
-    <form v-if="checkAnswer()" name="contact" netlify>
+    <form name="contact" netlify>
     <p>
-        <input type="text" name="success" value="success" hidden/>
+        <label>Name <input type="text" name="name" /></label>
+    </p>
+    <p>
+        <label>Email <input type="email" name="email" /></label>
+    </p>
+    <p>
         <button type="submit">Send</button>
     </p>
     </form>
