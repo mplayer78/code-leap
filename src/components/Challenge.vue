@@ -58,10 +58,10 @@ const showSubmit = ref(false)
         <button type="submit">Go</button>
     </form>
     <p>{{ message }}</p>
-    <form v-if="showSubmit" name="success" data-netlify="true">
+    <form v-if="showSubmit" method="post" name="success" data-netlify="true">
     <p>
         <input type="text" name="successful" value="successful!!" hidden/>
-        <input type="text" name="anyinput"/>
+        <input type="hidden" name="form-name" value="success" />
         <button type="submit">Send</button>
     </p>
     </form>
