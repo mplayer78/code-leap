@@ -68,9 +68,9 @@ const showSubmit = ref(false)
     method="post"
     data-netlify="true"
     data-netlify-honeypot="bot-field"
+    v-if="showSubmit"
     >
     <input type="hidden" name="form-name" value="ask-question" />
-    <input type="text" name="random text"/>
     <button>Submit</button>
   </form>
   </div>
