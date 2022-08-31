@@ -27,6 +27,11 @@ const handleSubmit = (e: Event) => {
 const handleCorrect = (id: string, ...args: any[]) => {
     showSubmit.value = true;
     window.localStorage.setItem(id, JSON.stringify(args))
+    fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    })
+    .catch((error) => alert(error));
 }
 
 const displayDescription = computed(() => {
@@ -58,7 +63,7 @@ const showSubmit = ref(false)
         <button type="submit">Go</button>
     </form>
     <p>{{ message }}</p>
-    <form v-if="showSubmit" method="post" name="success" data-netlify="true">
+    <form v-if="showSubmit" method="post" name="success" data-netlify="true" @submit="handleSubmit">
     <p>
         <input type="text" name="successful" value="successful!!" hidden/>
         <input type="hidden" name="form-name" value="success" />
