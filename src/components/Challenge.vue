@@ -17,15 +17,16 @@ const inputList = computed(() => {
 const handleSubmit = (e: Event) => {
     e.preventDefault();
     if (checkAnswer()) {
-        handleCorrect(currentChallenge, val1, val2);
+        handleCorrect(props.challengeId ?? "", val1.value, val2.value);
         message.value = currentChallenge.value?.messages.success ?? ""
     } else {
         message.value = currentChallenge.value?.messages.failure ?? ""
     };
 }
 
-const handleCorrect = (challenge: any, ...args: any[]) => {
-    window.localStorage.setItem(challenge.id, JSON.stringify(args))
+const handleCorrect = (id: string, ...args: any[]) => {
+    showSubmit.value = true;
+    window.localStorage.setItem(id, JSON.stringify(args))
 }
 
 const displayDescription = computed(() => {
@@ -42,6 +43,8 @@ const checkAnswer = () => {
 const val1 = ref(0)
 const val2 = ref(1)
 
+const showSubmit = ref(false)
+
 </script>
 
 <template>
@@ -55,9 +58,10 @@ const val2 = ref(1)
         <button type="submit">Go</button>
     </form>
     <p>{{ message }}</p>
-    <form v-if="checkAnswer()" name="contact" netlify>
+    <form v-if="showSubmit" name="success" data-netlify="true">
     <p>
-        <input type="text" name="success" value="success" hidden/>
+        <input type="text" name="successful" value="successful!!" hidden/>
+        <input type="text" name="anyinput"/>
         <button type="submit">Send</button>
     </p>
     </form>
