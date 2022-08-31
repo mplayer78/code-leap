@@ -1,0 +1,27 @@
+<script setup lang="ts">
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import Intro from './components/Intro.vue'
+import DaysList from './components/DaysList.vue'
+import Challenge from './components/Challenge.vue'
+</script>
+
+<template>
+  <Intro/>
+  <DaysList/>
+  <Challenge :challengeId="'abcd'"/>
+</template>
+
+<style scoped>
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
+}
+</style>
