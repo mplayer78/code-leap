@@ -63,13 +63,16 @@ const showSubmit = ref(false)
         <button type="submit">Go</button>
     </form>
     <p>{{ message }}</p>
-    <form v-if="showSubmit" method="post" name="success" data-netlify="true" @submit="handleSubmit">
-    <p>
-        <input type="text" name="successful" value="successful!!" hidden/>
-        <input type="hidden" name="form-name" value="success" />
-        <button type="submit">Send</button>
-    </p>
-    </form>
+    <form
+    name="ask-question"
+    method="post"
+    data-netlify="true"
+    data-netlify-honeypot="bot-field"
+    >
+    <input type="hidden" name="form-name" value="ask-question" />
+    <input type="text" name="random text"/>
+    <button>Submit</button>
+  </form>
   </div>
 </template>
 
