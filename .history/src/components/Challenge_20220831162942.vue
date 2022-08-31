@@ -17,21 +17,21 @@ const inputList = computed(() => {
 const handleSubmit = (e: Event) => {
     e.preventDefault();
     if (checkAnswer()) {
-        message.value = currentChallenge.value?.messages.success ?? ""
+        message.value = currentChallenge.value.messages.success
     } else {
-        message.value = currentChallenge.value?.messages.failure ?? ""
+        message.value = currentChallenge.value.messages.failure
     };
 }
 
 const displayDescription = computed(() => {
-    return currentChallenge.value?.description.replace("%target%", String(currentChallenge.value?.target) ?? "")
+    return currentChallenge.value?.description.replace("%target%", currentChallenge.value.target)
 })
 
 const message = ref('');
 
 const checkAnswer = () => {
-    return [val1.value, val2.value].every(v => currentChallenge.value?.puzzleInput.includes(v)) &&
-    val1.value + val2.value === currentChallenge.value?.target
+    return [val1.value, val2.value].every(v => currentChallenge.value.puzzleInput.includes(v)) &&
+    val1.value + val2.value === currentChallenge.value.target
 }
 
 const val1 = ref(0)
