@@ -41,8 +41,14 @@ const displayDescription = computed(() => {
 const message = ref('');
 
 const checkAnswer = () => {
-    return [val1.value, val2.value].every(v => currentChallenge.value?.puzzleInput.includes(v)) &&
-    val1.value + val2.value === currentChallenge.value?.target
+    switch (currentChallenge.value?.check) {
+        case "eq_sum_of_given":
+            return [val1.value, val2.value].every(v => currentChallenge.value?.puzzleInput.includes(v)) &&
+            val1.value + val2.value === currentChallenge.value?.target
+        case "eq_sum":
+        default:
+            return val1.value + val2.value === currentChallenge.value?.target
+    }
 }
 
 const val1 = ref(0)
