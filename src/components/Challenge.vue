@@ -40,19 +40,21 @@ const displayDescription = computed(() => {
 
 const message = ref('');
 
+const val1 = ref(0)
+const val2 = ref(0)
+
 const checkAnswer = () => {
     switch (currentChallenge.value?.check) {
         case "eq_sum_of_given":
-            return [val1.value, val2.value].every(v => currentChallenge.value?.puzzleInput.includes(v)) &&
+            const vals = [val1.value, val2.value];
+            // @ts-ignore
+            return vals.every(v => currentChallenge.value?.puzzleInput?.find(pi => v === pi)) &&
             val1.value + val2.value === currentChallenge.value?.target
         case "eq_sum":
         default:
             return val1.value + val2.value === currentChallenge.value?.target
     }
 }
-
-const val1 = ref(0)
-const val2 = ref(1)
 
 const showSubmit = ref(false)
 

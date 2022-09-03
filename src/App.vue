@@ -8,7 +8,7 @@ import Challenge from './components/Challenge.vue'
 const currentChallengeId = ref('');
 
 function handleChallengeId(args: string) {
-  currentChallengeId.value = args
+  currentChallengeId.value = args;
 }
 
 </script>
@@ -16,9 +16,26 @@ function handleChallengeId(args: string) {
 <script lang="ts">
 export default {
   name: 'App',
+  data() {
+    return {
+      player: null as null | HTMLAudioElement,
+    }
+  },
   methods: {
-    
-  }
+    handleChallengeId(args: string) {
+      currentChallengeId.value = args;
+    },
+    handlePlay() {
+      this.player?.play()
+    }
+  },
+  mounted() {
+    const p = this.$refs.audioplayer;
+
+    if (p) {
+      this.player = p as HTMLAudioElement
+    }
+  },
 }
 </script>
 
