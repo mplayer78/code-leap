@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import challenges from '../challenges/challenges.json'
+import { marked } from 'marked';
 
 const props = defineProps({
     challengeId: String
@@ -11,7 +12,11 @@ const currentChallenge = computed(() => {
 })
 
 const inputList = computed(() => {
-    return currentChallenge.value?.puzzleInput.join(', ')
+    if (Array.isArray(currentChallenge.value?.puzzleInput)) {
+        return currentChallenge.value?.puzzleInput.join(', ')        
+    } else {
+        return currentChallenge.value?.puzzleInput
+    }
 })
 
 const handleSubmit = (e: Event) => {
@@ -35,7 +40,7 @@ const handleCorrect = (id: string, ...args: any[]) => {
 }
 
 const displayDescription = computed(() => {
-    return currentChallenge.value?.description.replace("%target%", String(currentChallenge.value?.target) ?? "")
+    return marked(currentChallenge.value?.description.replace("%target%", String(currentChallenge.value?.target) ?? "") || "");
 })
 
 const message = ref('');
@@ -63,8 +68,8 @@ const showSubmit = ref(false)
 <template>
   <div>
     <p>{{ currentChallenge?.date }}</p>
-    <p>{{ displayDescription }}</p>
-    <p>{{ inputList }}</p>
+    <p v-html="displayDescription"></p>
+    <p class="input">{{ inputList }}</p>
     <form action="POST" @submit="handleSubmit" v-if="currentChallenge?.id">
         <input type="number" v-model="val1">
         <input type="number" v-model="val2">
@@ -87,5 +92,9 @@ const showSubmit = ref(false)
 <style scoped>
 .read-the-docs {
   color: #888;
+}
+
+.input {
+    line-break: anywhere;
 }
 </style>
